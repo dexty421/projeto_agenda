@@ -1,12 +1,12 @@
 from django.contrib import admin
-from contact.models import Contact
+from contact.models import Category, Contact
 # Register your models here.
 #configurando o model criado no models.py aqui
 # colocando o mesmo nome da classe, só que com Admin ex:ContactAdmin,ClienteAdmin
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
      #como aparece no banco de dados admin la
-    list_display = 'id','first_name','last_name','phone',
+    list_display = 'id','first_name','last_name','phone','category',
      # tem a função de retornar em ordem, pelos parametros que vc colocou
                                 # se vc colocar um - dentro do nome da string
                                 # ele vai ordenar por ordem descrescente 
@@ -23,3 +23,6 @@ class ContactAdmin(admin.ModelAdmin):
     #deixar linkavel
     list_display_links = 'first_name',
     
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = 'name',
