@@ -15,6 +15,7 @@ db.sqlite3
 media
 static/
 media/
+project/local_settings.py
 
 # Backup files # 
 *.bak 
