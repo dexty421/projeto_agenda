@@ -1,4 +1,58 @@
 {% extends "global/base.html" %}
 {% block content %}
-    <h1>Contato</h1>
+    
+    {% comment %} {% for contact in contacts %}
+    {{contact.first_name}} - {{contact.phone}} - {{contact.last_name}}<br>
+    {% endfor %} {% endcomment %}
+    <div class="responsive-table">
+        <table class="contacts-table">
+            <caption class ='table-caption'>
+                Contacts
+            </caption>
+            <thead>
+                
+                <tr class="table-row table-row-header">
+                    <th class=" table-header">ID</th>
+                    <th class=" table-header">First Name</th>
+                    <th class=" table-header">Last name</th>
+                    <th class=" table-header">Phone</th>
+                    <th class=" table-header">Email</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+             {% for contact in contacts  %}
+                <tr class="table-row">
+                    <td class="table-cel">
+                        {% comment %} #LINK DINAMICO AQUI, pelo ID do contato e esse id foi filtrado na função
+                        # contact dentro de contact_views.py com o metodo get() {% endcomment %}
+                        <a href="{% url "contact:contact" contact.id %}" class="table-link">
+                            {{contact.id}}
+                        </a>
+                    </td>
+                    <td class="table-cel">
+                        
+                            {{contact.first_name}}
+                        
+                    </td>
+                    <td class="table-cel">
+                        
+                            {{contact.last_name}}
+                        
+                        
+                    </td>
+                    <td class="table-cel">
+                        
+                            {{contact.phone}}
+                        
+                    </td>
+                    <td class="table-cel">
+                        <a href="#">
+                            {{contact.email}}
+                        </a>
+                    </td>
+             {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}

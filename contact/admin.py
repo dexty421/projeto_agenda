@@ -6,7 +6,7 @@ from contact.models import Category, Contact
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
      #como aparece no banco de dados admin la
-    list_display = 'id','first_name','last_name','phone','category',
+    list_display = 'id','first_name','last_name','phone','category', 'show',
      # tem a função de retornar em ordem, pelos parametros que vc colocou
                                 # se vc colocar um - dentro do nome da string
                                 # ele vai ordenar por ordem descrescente 
@@ -19,9 +19,9 @@ class ContactAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 200
     # consegue editar dados mais facilmente com essa opção
-    list_editable = 'last_name','phone',
+    list_editable = 'last_name','phone','show',
     #deixar linkavel
-    list_display_links = 'first_name',
+    list_display_links = 'first_name', 
     
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
