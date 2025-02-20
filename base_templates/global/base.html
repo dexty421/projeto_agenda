@@ -1,15 +1,17 @@
 {% comment %} carrega os arquivos estaticos,css,js,imagens {% endcomment %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
     <link rel="stylesheet" href="{% static "global/css/style.css" %}">
+    <title>{{ site_title}} 📖</title>
 </head>
+{% comment %} pegando partes do site, esse está na global/partials/header.html e é chamado no base.html {% endcomment %}
+{% include "global/partials/_header.html" %}
 <body>
+   
     <main class="content">
         {% block content %}
     
