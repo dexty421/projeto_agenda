@@ -1,6 +1,6 @@
 {% extends "global/base.html" %}
 {% block content %}
-    
+{% if page_obj %}
     {% comment %} {% for contact in contacts %}
     {{contact.first_name}} - {{contact.phone}} - {{contact.last_name}}<br>
     {% endfor %} {% endcomment %}
@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-             {% for contact in contacts  %}
+             {% for contact in page_obj %}
+                
                 <tr class="table-row">
                     <td class="table-cel">
                         {% comment %} #LINK DINAMICO AQUI, pelo ID do contato e esse id foi filtrado na função
@@ -51,8 +52,14 @@
                             {{contact.email}}
                         </a>
                     </td>
+                    
              {% endfor %}
+             
             </tbody>
         </table>
     </div>
+{% else %}
+{% comment %} caso não encontre nenhum contato entra nesse IF {% endcomment %}
+<h1 class="header-contact-not-found" >Nenhum contato encontrado</h1>
+{% endif %}
 {% endblock content %}

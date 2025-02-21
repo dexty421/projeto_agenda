@@ -31,7 +31,12 @@
         class="search-input" 
         placeholder="Search..." 
         id = 'Search'
-        name = q>
+        name = q
+        value = "{{request.GET.q.strip}}"
+        {% comment %} autocomplete para parar de dar sugestões {% endcomment %}
+        autocomplete ="off"
+        >
+        
             
     </form>
 </div>

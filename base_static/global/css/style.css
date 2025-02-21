@@ -312,3 +312,8 @@
     filter: brightness(80%);
     box-shadow: 0 0 5px var(--link-dark-color);
   }
+  .header-contact-not-found{
+    font-size: var(--biggest-font-size);
+    text-align: center;
+  }
+  

@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 from django.db.models import Q
 from contact.models import Contact
 # Create your views here.
@@ -7,10 +8,15 @@ from contact.models import Contact
 def index(request):
                               #filtra os contatos que estão com show = True
                               #esse show está em models.py
-    contacts = Contact.objects.filter(show = True).order_by('-id')[10:20]
-                                                    #ordena pelo primeiro nome       
+    contacts = Contact.objects.filter(show = True).order_by('-id')
+                                                    #ordena pelo primeiro nome
+                                                    
+    paginator = Paginator(contacts,25) 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)                                                   
     context = {
-        'contacts' : contacts,
+
+        'page_obj': page_obj,
         'site_title':'Contatos Agenda'
         }
 
@@ -59,10 +65,14 @@ def search(request):
                                             # como se fosse um 'OR' mas ainda precisa do | 
                                             # Para usar como se fosse and retire o Q, os parentes
                                             # e coloque a virgula    
-    #  print(contacts.query)                                                                                      
+    paginator = Paginator(contacts,25) 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)                                                                                        
     context = {
-        'contacts' : contacts,
-        'site_title':'Search'
+        'page_obj' : page_obj,
+        'site_title':'Search',
+        'search_value':search_value,
+
         }
 
     return render(
