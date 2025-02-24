@@ -24,6 +24,7 @@ class Contact(models.Model):
                                             #para poder criar sem passar esse valor
                                             #coloca o blank = True
     last_name = models.CharField(max_length=30, blank=True)
+                                            #muda o nome do campo
     phone = models.CharField(max_length=50)
     email = models.EmailField( max_length=254,blank=True)
                                     #timezone.now pega os dados de data exatos
