@@ -1,14 +1,18 @@
+from typing import Any, Mapping
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.files.base import File
+from django.db.models.base import Model
+from django.forms.utils import ErrorList
 from . import models
 
 
 class ContactForm(forms.ModelForm):
-
+    
     class Meta:
         model = models.Contact
         fields = (
-            'first_name','last_name','phone',
+            'first_name','last_name','phone','email','description','category'
             )
         widgets = {
             'first_name':forms.TextInput(
