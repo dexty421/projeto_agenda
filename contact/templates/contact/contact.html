@@ -12,6 +12,19 @@
         <p><b>Description:</b> {{ contact.description }}</p>
         <p><b>Category:</b> {{ contact.category.name }}</p>
         <p><b>Owner:</b> {{ contact.owner }}</p>
+        <!-- colocando imagem -->
+         
+         {% comment %} if para saber se o contato tem imagem {% endcomment %}
+        {% if contact.picture %}
+        <p>
+            {% comment %} sempre necessario esse .url no fim {% endcomment %}
+            <img src="{{contact.picture.url }}" alt="{{ contact.first_name }} {{ contact.last_name }}">
+        </p>
+        {% endif %}
+        
+        
+        
+
         <div class="contact-links">
             <a class = 'btn btn-link'href="{% url 'contact:update' contact.id %}">
                 UPDATE
