@@ -1,10 +1,11 @@
-from typing import Any, Mapping
+#importação para formulario
 from django import forms
 from django.core.exceptions import ValidationError
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms.utils import ErrorList
+#importações para usuario
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from . import models
+import re
 
 
 class ContactForm(forms.ModelForm):
@@ -68,3 +69,52 @@ class ContactForm(forms.ModelForm):
                 )
             )
         return first_name
+
+class RegisterForm(UserCreationForm):
+        first_name = forms.CharField(min_length= 3 ,
+                                      required=True ,
+                                    )
+                                #required = obrigatorio esse campo   
+        email = forms.EmailField(required=True, max_length=150)
+        
+        class Meta:
+             model = User
+             fields = (
+                  'first_name',
+                  'last_name',
+                  'email',
+                  'username',
+                  'password1',
+                  'password2',
+             )
+
+        def clean_first_name(self):
+            first_name = self.cleaned_data.get('first_name')
+            #saber se o primeiro nome contem numeros entre ele
+            if isinstance(first_name,str):
+                 if re.search(r'\d', first_name):
+                    self.add_error(
+                      'first_name',
+                      ValidationError(
+                           f"O nome {first_name} contem numeros",
+                           code='invalid'
+                        )
+                    )
+            return first_name
+
+        def clean_email(self):
+            email = self.cleaned_data.get('email') 
+
+
+            #logica para saber se o email já foi cadastrado no banco de dados
+            if User.objects.filter(email = email).exists():
+                 self.add_error(
+                    #o campo email, poderia ser outro campo
+                      'email',
+                      #Levantar erro de validação no campo
+                      ValidationError(
+                           "Email já cadastrado",
+                           code='invalid'
+                           )
+                 )
+            return email    
