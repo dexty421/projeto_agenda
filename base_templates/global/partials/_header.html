@@ -1,13 +1,16 @@
 <header class="header">
+    <p>{{ user }}</p>
     <h1 class="header-heading">
         <a href="{% url "contact:index" %}" class="header-link">
             Agenda
         </a>
         
     </h1>
+   
     #MENU
 <nav class="menu">
     <ul class="menu-list">
+        {% if user.is_authenticated %}
         <li class="menu-item">
             {% comment %} com o url do django você redireciona mais facil pra url que vc quer {% endcomment %}
             <a href="{% url "contact:create" %}" class="menu-link">
@@ -16,11 +19,26 @@
 
         </li>
         <li class="menu-item">
-            <a href="{% url "contact:create" %}" class="menu-link">
-                LINK 2
+            {% comment %} com o url do django você redireciona mais facil pra url que vc quer {% endcomment %}
+            <a href="{% url "contact:user_update" %}" class="menu-link">
+                Profile
             </a>
 
         </li>
+        
+        <a href= "{% url "contact:logout" %}" class="menu-link"> Deslogar {{ user }}</a>
+        {% else %}
+        <li class="menu-item">
+            <a href="{% url "contact:register" %}" class="menu-link">
+                Cadastrar
+            </a>
+        </li>
+        <li class="menu-item">
+        <a href="{% url "contact:login" %}" class="menu-link">
+            Entrar
+         </a>
+        </li>
+        {% endif %}
     </ul> 
 </nav>
 

@@ -11,7 +11,9 @@
 {% comment %} pegando partes do site, esse está na global/partials/header.html e é chamado no base.html {% endcomment %}
 {% include "global/partials/_header.html" %}
 <body>
+   {% include "global/partials/_messages.html" %}
    
+  
     <main class="content">
         {% block content %}
     

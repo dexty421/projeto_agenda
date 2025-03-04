@@ -1,0 +1,25 @@
+{% extends "global/base.html" %}
+{% block content %}
+
+<div class="form-wrapper">
+    {% csrf_token %}
+            {% comment %} #variaveis do proprio django {% endcomment %}
+  <h2>Login {{user.is_authenticated}}</h2>
+  {% if user.is_authenticated %}
+    
+        
+        Você fez login como {{user}}.
+        <a href= "{% url "contact:index" %} " class = "login-style">VOLTAR</a>
+    
+   
+    
+        <a href= "{% url "contact:logout" %} " class = "login-style">deslogar</a>
+    
+  {% else %}
+  {% include "contact/partials/_user-form.html" %} 
+  {% endif %}
+
+ 
+  
+</div>
+{% endblock content %}

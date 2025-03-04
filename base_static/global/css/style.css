@@ -238,6 +238,10 @@
     background: rgba(255, 255, 0, 0.3);
     border: 1px solid rgba(255, 255, 0, 90%);
   }
+  .message.info {
+    background: rgba(0, 0, 255, 0.3);
+    border: 1px solid rgba(0, 0, 255, 0.3);
+  }
   
   .form-wrapper {
     max-width: 60rem;
@@ -335,4 +339,16 @@
   .btn-delete {
     background: tomato;
   }
-  
+  a.login-style {
+    color: #ffffff; /* Cor do texto */
+    background-color: #007BFF; /* Cor de fundo */
+    padding: 10px 20px; /* Espaçamento interno */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px; /* Arredonda os cantos */
+    font-weight: bold; /* Deixa o texto em negrito */
+    transition: background-color 0.3s ease; /* Animação na mudança de cor do fundo */
+}
+
+a.login-style:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
